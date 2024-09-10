@@ -12,17 +12,22 @@
         <ul>
           <li class="px-4 py-2 hover:bg-blue-300">
             <a href="#" class="flex items-center text-gray-700">
-              <span v-if="isSidebarExpanded" class="ml-4">Home</span>
+              <span v-if="isSidebarExpanded" class="ml-4">Dashboard</span>
             </a>
           </li>
           <li class="px-4 py-2 hover:bg-blue-300">
             <a href="#" class="flex items-center text-gray-700">
-              <span v-if="isSidebarExpanded" class="ml-4">Settings</span>
+              <span v-if="isSidebarExpanded" class="ml-4">Mobil</span>
             </a>
           </li>
           <li class="px-4 py-2 hover:bg-blue-300">
             <a href="#" class="flex items-center text-gray-700">
-              <span v-if="isSidebarExpanded" class="ml-4">Profile</span>
+              <span v-if="isSidebarExpanded" class="ml-4">Peminjaman</span>
+            </a>
+          </li>
+          <li class="px-4 py-2 hover:bg-blue-300">
+            <a href="#" class="flex items-center text-gray-700">
+              <span v-if="isSidebarExpanded" class="ml-4">Pengembalian</span>
             </a>
           </li>
         </ul>
@@ -30,17 +35,12 @@
     </div>
 </template>
   
-<script>
+<script setup>
 import { defineProps } from 'vue';
   
-export default {
-    name: 'Sidebar',
-    setup() {
-        const props = defineProps({
-            isSidebarExpanded: Boolean,
-            toggleSidebar: Function
-        });
-    }
-}
+const props = defineProps({
+    isSidebarExpanded: Boolean,
+    toggleSidebar: Function
+});
 </script>
   

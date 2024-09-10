@@ -9,7 +9,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-    
+  
         <div v-if="isDropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
           <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
           <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
@@ -20,33 +20,34 @@
 </template>
   
 <script setup>
-import axios from 'axios';
-import { ref } from 'vue';
-import router from '../../router';
+  import axios from 'axios';
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   
-const isDropdownOpen = ref(false);
-
-const toggleDropdown = () => {
-  isDropdownOpen.value = !isDropdownOpen.value;
-};
-
-const loggedOut = async () => {
-  const token = localStorage.getItem('authToken');
-
-  try {
-    await axios.post('/api/logout', {}, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userRole');
-
-    router.push('/login');
-  } catch (error) {
-    console.error('Logout error:', error);
+  const isDropdownOpen = ref(false);
+  const router = useRouter();
+  
+  const toggleDropdown = () => {
+    isDropdownOpen.value = !isDropdownOpen.value;
+  };
+  
+  const loggedOut = async () => {
+    const token = localStorage.getItem('authToken');
+  
+    try {
+      await axios.post('/api/logout', {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userRole');
+  
+      router.push('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   }
-}
 </script>
   
