@@ -1,0 +1,1425 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Cool API",
+        "description": "An API of cool stuffs",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/mobils": {
+            "get": {
+                "tags": [
+                    "Mobil"
+                ],
+                "summary": "Get list of Mobil",
+                "operationId": "411966e9a27c8d0a45af5d95616c1986",
+                "parameters": [
+                    {
+                        "name": "merek",
+                        "in": "query",
+                        "description": "Filter by merek",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "in": "query",
+                        "description": "Filter by model",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ketersediaan",
+                        "in": "query",
+                        "description": "Filter by ketersediaan (availability)",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of Mobil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data Mobil Successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "merek": {
+                                                        "type": "string",
+                                                        "example": "Toyota"
+                                                    },
+                                                    "model": {
+                                                        "type": "string",
+                                                        "example": "Camry"
+                                                    },
+                                                    "nomor_plat": {
+                                                        "type": "string",
+                                                        "example": "ABC1234"
+                                                    },
+                                                    "tarif_sewa_per_hari": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 500000
+                                                    },
+                                                    "ketersediaan": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobil"
+                ],
+                "summary": "Store a new Mobil",
+                "operationId": "6d2ef423591bc77d14b846974eeb6f5e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "merek": {
+                                                "type": "string"
+                                            },
+                                            "model": {
+                                                "type": "string"
+                                            },
+                                            "nomor_plat": {
+                                                "type": "string"
+                                            },
+                                            "tarif_sewa_per_hari": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "ketersediaan": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "merek": "Toyota",
+                                    "model": "Camry",
+                                    "nomor_plat": "ABC1234",
+                                    "tarif_sewa_per_hari": 500000,
+                                    "ketersediaan": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Mobil created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 201
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data Mobil Berhasil Dibuat."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "merek": {
+                                                    "type": "string",
+                                                    "example": "Toyota"
+                                                },
+                                                "model": {
+                                                    "type": "string",
+                                                    "example": "Camry"
+                                                },
+                                                "nomor_plat": {
+                                                    "type": "string",
+                                                    "example": "ABC1234"
+                                                },
+                                                "tarif_sewa_per_hari": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 500000
+                                                },
+                                                "ketersediaan": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 422
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "merek": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The merek field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "model": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The model field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "nomor_plat": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The nomor plat field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "tarif_sewa_per_hari": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The tarif sewa per hari field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "ketersediaan": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The ketersediaan field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/mobils/{id}": {
+            "put": {
+                "tags": [
+                    "Mobil"
+                ],
+                "summary": "Edit an existing Mobil",
+                "operationId": "51b94062d50b3555813dc9c0dd1091c9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Mobil to edit",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "merek": {
+                                                "type": "string"
+                                            },
+                                            "model": {
+                                                "type": "string"
+                                            },
+                                            "nomor_plat": {
+                                                "type": "string"
+                                            },
+                                            "tarif_sewa_per_hari": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "ketersediaan": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "merek": "Toyota",
+                                    "model": "Camry",
+                                    "nomor_plat": "ABC1234",
+                                    "tarif_sewa_per_hari": 500000,
+                                    "ketersediaan": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Mobil updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data Mobil Berhasil Diubah."
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "merek": {
+                                                    "type": "string",
+                                                    "example": "Toyota"
+                                                },
+                                                "model": {
+                                                    "type": "string",
+                                                    "example": "Camry"
+                                                },
+                                                "nomor_plat": {
+                                                    "type": "string",
+                                                    "example": "ABC1234"
+                                                },
+                                                "tarif_sewa_per_hari": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 500000
+                                                },
+                                                "ketersediaan": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Mobil not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 404
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mobil Tidak Ditemukan !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 422
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "merek": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The merek field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "model": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The model field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "nomor_plat": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The nomor plat field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "tarif_sewa_per_hari": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The tarif sewa per hari field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "ketersediaan": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The ketersediaan field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Mobil"
+                ],
+                "summary": "Delete a Mobil",
+                "operationId": "d2caf687fd3ea6d24e1f4da86a550e4e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of Mobil to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mobil deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data Mobil Berhasil Dihapus !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Mobil not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 404
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data Mobil Tidak Ditemukan !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/peminjaman": {
+            "get": {
+                "tags": [
+                    "Peminjaman"
+                ],
+                "summary": "List of Peminjaman Mobil",
+                "operationId": "f9566193d2bae580df81363803ae33d2",
+                "responses": {
+                    "200": {
+                        "description": "List of all peminjaman",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "user": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "John Doe"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "mobil": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "merek": {
+                                                                "type": "string",
+                                                                "example": "Toyota"
+                                                            },
+                                                            "model": {
+                                                                "type": "string",
+                                                                "example": "Camry"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "tgl_mulai": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-09-01"
+                                                    },
+                                                    "tgl_selesai": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-09-05"
+                                                    },
+                                                    "total_hari_sewa": {
+                                                        "type": "integer",
+                                                        "example": 4
+                                                    },
+                                                    "status_sewa": {
+                                                        "type": "string",
+                                                        "example": "ongoing"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Peminjaman"
+                ],
+                "summary": "Store new Peminjaman Mobil",
+                "operationId": "563360b98ce15e0f855d4bb934d1be6a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "mobil_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "tgl_mulai": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2024-09-01"
+                                            },
+                                            "tgl_selesai": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2024-09-05"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "mobil_id": 1,
+                                    "tgl_mulai": "2024-09-01",
+                                    "tgl_selesai": "2024-09-05"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Peminjaman created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "mobil_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "tgl_mulai": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2024-09-01"
+                                                },
+                                                "tgl_selesai": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2024-09-05"
+                                                },
+                                                "total_hari_sewa": {
+                                                    "type": "integer",
+                                                    "example": 4
+                                                },
+                                                "status_sewa": {
+                                                    "type": "string",
+                                                    "example": "ongoing"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 422
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "mobil_id": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The mobil_id field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "tgl_mulai": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The tgl_mulai field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "tgl_selesai": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The tgl_selesai field is required."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Mobil not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 404
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mobil Tidak Ditemukan !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pengembalian": {
+            "get": {
+                "tags": [
+                    "Pengembalian"
+                ],
+                "summary": "List of Pengembalian Mobil",
+                "operationId": "c0d1b7597a137704f8d74dde0e979a99",
+                "responses": {
+                    "200": {
+                        "description": "List of all pengembalian",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "peminjaman": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "tgl_mulai": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "example": "2024-09-01"
+                                                            },
+                                                            "tgl_selesai": {
+                                                                "type": "string",
+                                                                "format": "date",
+                                                                "example": "2024-09-05"
+                                                            },
+                                                            "mobil": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "merek": {
+                                                                        "type": "string",
+                                                                        "example": "Toyota"
+                                                                    },
+                                                                    "model": {
+                                                                        "type": "string",
+                                                                        "example": "Camry"
+                                                                    },
+                                                                    "nomor_plat": {
+                                                                        "type": "string",
+                                                                        "example": "B 1234 XYZ"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            },
+                                                            "user": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "example": "John Doe"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "tgl_pengembalian": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-09-10"
+                                                    },
+                                                    "jumlah_total_sewa": {
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 500000
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pengembalian"
+                ],
+                "summary": "Store new Pengembalian Mobil",
+                "operationId": "fe91c3c9c10e7860dfa6a2b11500a2c4",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "nomor_plat": {
+                                                "type": "string",
+                                                "example": "B 1234 XYZ"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nomor_plat": "B 1234 XYZ"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pengembalian created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mobil berhasil dikembalikan !"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "peminjaman_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "tgl_pengembalian": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2024-09-10"
+                                                },
+                                                "jumlah_total_sewa": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 500000
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Mobil not found or no active peminjaman",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 404
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Mobil Tidak Ditemukan !"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "operationId": "e1dad8eb328a8279f32bd2806c04faf0",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "user@test.com",
+                                    "password": "useruser1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Valid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": null
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "user": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 2
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "User"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "user@test.com"
+                                                        },
+                                                        "email_verified_at": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2022-06-28 06:06:17"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2022-06-28 06:06:17"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "access_token": {
+                                                    "properties": {
+                                                        "token": {
+                                                            "type": "string",
+                                                            "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "example": "Bearer"
+                                                        },
+                                                        "expires_in": {
+                                                            "type": "number",
+                                                            "example": 3600
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 401
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "error"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Incorrect username or password!"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "operationId": "832ae66e6f338f15d6f8aa2a2755b008",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {}
+                                },
+                                "type": "object",
+                                "example": []
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 200
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "success"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Successfully logged out"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "meta": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": 422
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "error"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Unauthenticated."
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register",
+                "operationId": "08895790736612da345bc0606cefe61b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            },
+                                            "password_confirmation": {
+                                                "type": "string"
+                                            },
+                                            "alamat": {
+                                                "type": "string"
+                                            },
+                                            "no_telepon": {
+                                                "type": "number"
+                                            },
+                                            "no_sim": {
+                                                "type": "number"
+                                            },
+                                            "role": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "John",
+                                    "email": "john@test.com",
+                                    "password": "johnjohn1",
+                                    "password_confirmation": "johnjohn1",
+                                    "alamat": "Jl. Contoh No. 1",
+                                    "no_telepon": "08123456789",
+                                    "no_sim": "123456789",
+                                    "role": "customer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registration successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john@test.com"
+                                                },
+                                                "alamat": {
+                                                    "type": "string",
+                                                    "example": "Jl. Contoh No. 1"
+                                                },
+                                                "no_telepon": {
+                                                    "type": "number",
+                                                    "example": 8123456789
+                                                },
+                                                "no_sim": {
+                                                    "type": "number",
+                                                    "example": 123456789
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "customer"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2022-06-28 06:06:17"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2022-06-28 06:06:17"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email has already been taken."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                },
+                                                "password": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The password must be at least 8 characters."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User could not be created."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "token": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Mobil",
+            "description": "Mobil Management CRUD"
+        },
+        {
+            "name": "Peminjaman",
+            "description": "API endpoints for managing peminjaman mobil"
+        },
+        {
+            "name": "Pengembalian",
+            "description": "API endpoints for managing pengembalian mobil"
+        },
+        {
+            "name": "Auth",
+            "description": "Auth"
+        }
+    ]
+}
