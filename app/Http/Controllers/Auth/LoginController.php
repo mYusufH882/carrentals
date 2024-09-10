@@ -96,6 +96,9 @@ class LoginController extends Controller
             return $this->notFound('Email atau Password Anda salah');
         }
 
-        return $this->success($token);
+        $user = auth()->guard('api')->user();
+        $role = $user->role;
+
+        return $this->successLogin($token, $role);
     }
 }
