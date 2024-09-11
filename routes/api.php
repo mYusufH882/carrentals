@@ -18,14 +18,19 @@ Route::post('/login', LoginController::class)->name('login');
 Route::middleware('auth:api')->group(function() {
     Route::group(['prefix' => 'mobil'], function() {
         Route::get('/', [MobilController::class, 'index'])->name('mobil');
+        Route::get('/count', [MobilController::class, 'getCount']);
     });
     
+    Route::get('/peminjaman/count', [PeminjamanController::class, 'getCount']);
+    Route::get('/pengembalian/count', [PengembalianController::class, 'getCount']);
+
     Route::get('/peminjaman', [PeminjamanController::class, 'listPinjamMobil']);
     Route::get('/pengembalian', [PengembalianController::class, 'listPengembalianMobil']);
     
     Route::middleware('role:rental')->group(function() {
         Route::group(['prefix' => 'mobil'], function() {
             Route::post('/create', [MobilController::class, 'store'])->name('mobil-create');
+            Route::get('/detail/{id}', [MobilController::class, 'detail'])->name('mobil-detail');
             Route::put('/edit/{id}', [MobilController::class, 'edit'])->name('mobil-edit');
             Route::delete('/delete/{id}', [MobilController::class, 'delete'])->name('mobil-delete');
         });

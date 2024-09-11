@@ -62,6 +62,13 @@ class PeminjamanController extends Controller
         return $this->success($pinjam);
     }
 
+    public function getCOunt()
+    {
+        $pinjamCount = Peminjaman::get()->count();
+
+        return $this->success($pinjamCount);
+    }
+
     /**
      * Store new Peminjaman Mobil
      * @OA\Post(

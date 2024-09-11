@@ -90,6 +90,13 @@ class MobilController extends Controller
         return $this->success($mobils, 'Data Mobil Successfully');
     }
 
+    public function getCount()
+    {
+        $mobilCount = Mobil::get()->count();
+
+        return $this->success($mobilCount);
+    }
+
     /**
      * Store a new Mobil
      * @OA\Post(
@@ -174,6 +181,12 @@ class MobilController extends Controller
         $mobil = Mobil::create($validData);
 
         return $this->success($mobil, 'Data Mobil Berhasil Dibuat.');
+    }
+
+    public function detail($id) {
+        $mobil = Mobil::find($id);
+
+        return $this->success($mobil);
     }
 
     /**

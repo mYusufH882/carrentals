@@ -67,6 +67,13 @@ class PengembalianController extends Controller
         return $this->success($pengembalian);
     }
 
+    public function getCount()
+    {
+        $kembaliCount = Pengembalian::get()->count();
+
+        return $this->success($kembaliCount);
+    }
+
     /**
      * Store new Pengembalian Mobil
      * @OA\Post(
