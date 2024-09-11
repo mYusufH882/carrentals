@@ -4,6 +4,17 @@ namespace App\Traits;
 
 trait ResponseApi
 {
+    public function successLogin($token, $name, $role, $message = 'Login successful', $status = 201)
+    {
+        return response()->json([
+            'status' => $status,
+            'name' => $name,
+            'role' => $role,
+            'token' => $token,
+            'message' => $message,
+        ], $status);
+    }
+
     public function success($data, $message = 'Request successful', $status = 201)
     {
         return response()->json([
@@ -36,5 +47,14 @@ trait ResponseApi
             'status' => 403,
             'message' => $message,
         ], 403);
+    }
+
+    public function error($error, $message = 'Internal Server Error', $status = 500)
+    {
+        return response()->json([
+            'status' => $status,
+            'message' => $message,
+            'error' => $error,
+        ], 500);   
     }
 }
