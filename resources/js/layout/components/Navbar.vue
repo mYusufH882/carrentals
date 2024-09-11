@@ -4,7 +4,8 @@
       <div class="relative">
         <button @click="toggleDropdown" class="flex items-center space-x-2 focus:outline-none">
           <img class="w-10 h-10 rounded-full object-cover" src="https://via.placeholder.com/150" alt="Profile">
-          <span class="text-gray-700 font-medium">John Doe</span>
+          <span class="text-gray-700 font-medium">{{ name }}</span>
+          <span class="text-gray-500 font-small">{{ role }}</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
@@ -25,6 +26,8 @@ import { ref } from 'vue';
 import router from '../../router';
   
 const isDropdownOpen = ref(false);
+const name = localStorage.getItem('userName');
+const role = localStorage.getItem('userRole');
 
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;

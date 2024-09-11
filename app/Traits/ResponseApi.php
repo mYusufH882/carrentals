@@ -4,10 +4,11 @@ namespace App\Traits;
 
 trait ResponseApi
 {
-    public function successLogin($token, $role, $message = 'Login successful', $status = 201)
+    public function successLogin($token, $name, $role, $message = 'Login successful', $status = 201)
     {
         return response()->json([
             'status' => $status,
+            'name' => $name,
             'role' => $role,
             'token' => $token,
             'message' => $message,

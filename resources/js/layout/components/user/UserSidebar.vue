@@ -10,41 +10,34 @@
       </div>
       <nav class="mt-4">
         <ul>
-        <div v-if="userRole === 'customer'">
-
-            <li class="px-4 py-2 hover:bg-blue-600">
-              <a href="#" class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span v-if="isSidebarExpanded" class="ml-4">Peminjaman</span>
-              </a>
-            </li>
-            <li class="px-4 py-2 hover:bg-blue-600">
-              <a href="#" class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span v-if="isSidebarExpanded" class="ml-4">Pengembalian</span>
-              </a>
-            </li>
-
-        </div>
+          <li :class="{'bg-blue-300': isActive('/peminjaman-user')}" class="px-4 py-2 hover:bg-blue-600">
+            <a href="/peminjaman-user" class="flex items-center">
+              <i class="fas fa-exchange-alt w-6 h-6 pt-1"></i>
+              <span v-if="isSidebarExpanded" class="ml-4">Peminjaman</span>
+            </a>
+          </li>
+          <li  :class="{'bg-blue-300': isActive('/pengembalian-user')}" class="px-4 py-2 hover:bg-blue-600">
+            <a href="/pengembalian-user" class="flex items-center">
+              <i class="fas fa-undo w-6 h-6 pt-1"></i>
+              <span v-if="isSidebarExpanded" class="ml-4">Pengembalian</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
 </template>
   
 <script setup>
-  import { ref } from 'vue';
-  import { useRoute } from 'vue-router'; 
+import { useRoute } from 'vue-router'; 
 
-  const props = defineProps({
-    isSidebarExpanded: Boolean,
-    toggleSidebar: Function
-  });
+const props = defineProps({
+  isSidebarExpanded: Boolean,
+  toggleSidebar: Function
+});
   
-  const route = useRoute();
-  const userRole = ref(route.meta.userRole || 'customer'); 
+const route = useRoute();
+const isActive = (path) => {
+  return route.path === path;
+};
 </script>
   

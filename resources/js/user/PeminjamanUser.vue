@@ -13,6 +13,7 @@
                         <th>Tanggal Selesai</th>
                         <th>Total Sewa/Hari</th>
                         <th>Status Sewa</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -27,7 +28,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-dt/css/datatables.dataTables.css';
-import { formatDate } from '../../helpers/formatHelper';
+import { formatDate } from '../helpers/formatHelper';
 
 const dataPeminjaman = ref([]);
 let dataTable = null;
@@ -81,6 +82,15 @@ const populateDataTable = () => {
                     if(status == "returned") return `<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Selesai</span>`
                 }  
             },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+                        <button onclick="editPeminjaman(${row.id})" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-2">Edit</button>
+                        <button onclick="deletePeminjaman(${row.id})" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Hapus</button>
+                    `;
+                }
+            }
         ]
     });
 

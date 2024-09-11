@@ -45,9 +45,11 @@ import { useRouter } from 'vue-router';
         const response = await axios.post('/api/login', form.value);
 
         const token = response.data.token;
+        const name = response.data.name;
         const role = response.data.role;
 
         localStorage.setItem('authToken', token);
+        localStorage.setItem('userName', name);
         localStorage.setItem('userRole', role);
 
         if (role === 'rental') {

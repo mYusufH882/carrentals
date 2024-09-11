@@ -97,8 +97,9 @@ class LoginController extends Controller
         }
 
         $user = auth()->guard('api')->user();
+        $name = $user->name;
         $role = $user->role;
 
-        return $this->successLogin($token, $role);
+        return $this->successLogin($token, $name, $role);
     }
 }

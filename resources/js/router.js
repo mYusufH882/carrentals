@@ -10,6 +10,8 @@ import PeminjamanAdmin from './admin/peminjaman/PinjamMobil.vue';
 import PengembalianAdmin from './admin/pengembalian/KembaliMobil.vue';
 import InputMobil from './admin/mobil/InputMobil.vue';
 import EditMobil from './admin/mobil/EditMobil.vue';
+import PeminjamanUser from './user/PeminjamanUser.vue';
+import PengembalianUser from './user/PengembalianUser.vue';
 
 const routes = [
     {
@@ -63,7 +65,7 @@ const routes = [
           path: '/pengembalian-admin',
           name: 'Pengembalian',
           component: PengembalianAdmin,
-          meta: { requiresAuth: true, role: 'rental' }
+          meta: { requiresAuth: true, role: 'rental' },
         },
       ]
     },
@@ -72,6 +74,20 @@ const routes = [
         name: 'Home',
         component: Home,
         meta: { requiresAuth: true, role: 'customer' },
+        children: [
+          {
+            path: '/peminjaman-user',
+            name: 'Peminjaman',
+            component: PeminjamanUser,
+            meta: { requiresAuth: true, role: 'customer' }
+          },
+          {
+            path: '/pengembalian-user',
+            name: 'Pengembalian',
+            component: PengembalianUser,
+            meta: { requiresAuth: true, role: 'customer' }
+          },
+        ]
     },
 ];
 
